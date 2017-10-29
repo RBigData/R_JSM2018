@@ -1,0 +1,22 @@
+Due Date: Monday, October 30 (11:59EDT), 2017
+
+Chen, W.-C., Schmidt, D., and Ostrouchov, G. (2018)
+"The pbdR Project: Distributed Computing with R,"
+Section on Statistical Computing, JSM2018, Vancouver, BC, Canada. (Invited). 
+
+Duration: 20 mins
+
+Abstract:
+
+In this talk, we will introduce the project of Programming with Big Data
+in R (pbdR).
+A prototype was stated around late 2011 mainly developed under
+message passing interface (MPI) environment with R.
+Later in 2012, the pbdR focused on large scale distributed
+computation environment built upon several scalable numerical libraries
+enlarge R's capability on high performance computing.
+Beside easy-to-use programming capability, we brought user interaction
+interface into the pbdR started in late 2015.
+We continuously to enhance the pbdR's interacition feature to larger scale
+environment.
+Future considerations will conclude this talk.
