@@ -9,14 +9,17 @@ Duration: 20 mins
 Abstract:
 
 In this talk, we will introduce the project of Programming with Big Data
-in R (pbdR).
+in R (pbdR) at http://r-pbd.org/.
 A prototype was stated around late 2011 mainly developed under
 message passing interface (MPI) environment with R.
 Later in 2012, the pbdR focused on large scale distributed
 computation environment built upon several scalable numerical libraries
 enlarge R's capability on high performance computing.
+Subsequently, several statistical applications had been implemented
+and tested on large datasets in Tera bytes scale.
 Beside easy-to-use programming capability, we brought user interaction
 interface into the pbdR started in late 2015.
-We continuously to enhance the pbdR's interacition feature to larger scale
+By utilizing a high-performance asynchronous messaging library (ZeroMQ),
+we continuously establish the pbdR's interacition feature on larger scale
 environment.
 Future considerations will conclude this talk.
