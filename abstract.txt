@@ -10,7 +10,11 @@ Abstract:
 
 In this talk, we will introduce the project of Programming with Big Data
 in R (pbdR) at http://r-pbd.org/.
-A prototype was stated around late 2011 mainly developed under
+The pbdR project is aiming for large scale computing platforms, in particular,
+bring R and statistics to super computer architectures where by default
+using distributed processors and memory to deal large scale computation and
+large amount of data from simulated or observed.
+A prototype of pbdR was stated around late 2011 mainly developed under
 message passing interface (MPI) environment with R.
 Later in 2012, the pbdR focused on large scale distributed
 computation environment built upon several scalable numerical libraries
