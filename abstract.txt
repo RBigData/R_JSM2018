@@ -10,22 +10,23 @@ Abstract:
 
 In this talk, we will introduce the project of Programming with Big Data
 in R (pbdR) available at http://r-pbd.org/ and CRAN.
-The pbdR project is suitable from small to large scale computing platforms
+The pbdR is suitable broad computing platforms scaled from small to large
 including regular laptops, multicore computers, and multi-node clusters.
-In particular, the pbdR project is aiming for bringing R and statistics
+In particular, the pbdR is aiming for bringing R and statistics
 to supercomputer architectures where by default
-using distributed processors and memory to deal with large scale computation and
-data analysis for simulation or observational studies.
-A prototype of pbdR was stated around late 2011 mainly developed under
-message passing interface (MPI) environment with R.
-Later in 2012, the pbdR focused on large scale distributed
-computation environment built upon scalable libraries (ScaLAPACK)
+using distributed processors and memory to deal with very large scale
+computation and data analysis for simulation or observational studies.
+A prototype of pbdR was started around late 2011 mainly developed under
+message passing interface (MPI) environment.
+Later in 2012, the pbdR focused on distributed
+computation environment built upon scalable numerical libraries (ScaLAPACK)
 enlarging R's capability on high performance computing systems.
 Subsequently, several statistical applications had been implemented
 and performed on datasets of Tera bytes scale in distributed computing manner.
 Beside easy-to-use programming capability, we brought native R user
 interface into the pbdR started in late 2015.
 By utilizing a high-performance asynchronous messaging library (ZeroMQ),
-we continuously establish the pbdR's interaction feature on larger scale
-environment.
+we continuously establish the pbdR's interaction feature and data
+visualization across different computation architectures.
 Future considerations will conclude this talk.
+
