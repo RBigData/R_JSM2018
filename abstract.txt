@@ -17,7 +17,7 @@ learn from the high performance computing community, reinvent as
 little as possible, and provide native R interfaces.  In particular,
 pbdR aims to bring R and statistical computing to supercomputer
 architectures where a combination of shared memory, distributed
-memory, and co-processor hardware is available on each node for very
+memory, and co-processor hardware is available for very
 large scale computation on potentially very large data.
 
 A prototype of pbdR was started around late 2011, mainly developed for
