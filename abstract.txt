@@ -8,29 +8,28 @@ Duration: 20 mins
 
 Abstract:
 
-In this talk, we will introduce the project of Programming with Big Data
-in R (pbdR) available at http://r-pbd.org/ and CRAN.
-The pbdR runs in major operating systems and is suitable for
-broad computing platforms from small to large scales
-including regular laptops, multicore computers, and multi-node clusters.
-In particular, the pbdR is aiming for bringing R and statistics
-to supercomputers which are designed by default
-using distributed processors and memory to deal with very large scale
-computation and data analysis for simulation or observational studies.
-To take advanges of different computation architectures,
-a prototype of pbdR was started around late 2011 and mainly developed under
-message passing interface (MPI) environment in a single program
-multiple data (SPMD) style.
-Later in 2012, the pbdR focused on distributed
-computation environment built upon scalable numerical libraries (ScaLAPACK)
-enlarging R's capability on high performance computing systems.
-Subsequently, several statistical applications had been implemented
-in distributed computing manners and analyses had been performed on
-datasets of Tera bytes scale.
-Beside the easy-to-use programming capability, we recently brought the native R
-user interface into the pbdR by utilizing a high-performance asynchronous
-messaging library (ZeroMQ) in a client-server style.
-We continuously advance the pbdR's interaction feature and data
-visualization across different computation architectures.
-Future considerations will conclude this talk.
+In this talk, we introduce the Programming with Big Data in R (pbdR)
+project, which is composed of several packages available at
+http://pbdr.org/ and on CRAN.  Together, the packages provide a broad
+parallel computing capability that spans multicore laptops through
+large multi-node clusters to supercomputers. Our philosophy is to
+learn from the high performance computing community, reinvent as
+little as possible, and provide native R interfaces.  In particular,
+pbdR aims to bring R and statistical computing to supercomputer
+architectures where a combination of shared memory, distributed
+memory, and co-processor hardware is available on each node for very
+large scale computation on potentially very large data.
 
+A prototype of pbdR was started around late 2011, mainly developed for
+message passing interface (MPI) environment.  Later, in 2012, the
+project focused on using scalable numerical libraries (ScaLAPACK)
+enlarging R's capability on high performance computing systems.
+Subsequently, several statistical applications have been implemented
+and applied to treascale datasets, providing interactive (sub minute)
+speeds on very large systems.  In addition to providing this
+supercomputer scale batch programming capability, we developed a
+client-server interface in late 2015 capable of interactive
+programming on very large distributed systems.  By utilizing a
+high-performance asynchronous messaging library (ZeroMQ), interactive
+control of a large distributed set of R sessions, cooperating in a
+single program multiple data (SPMD) fashion is possible.
