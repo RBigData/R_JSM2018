@@ -10,23 +10,27 @@ Abstract:
 
 In this talk, we will introduce the project of Programming with Big Data
 in R (pbdR) available at http://r-pbd.org/ and CRAN.
-The pbdR is suitable broad computing platforms scaled from small to large
+The pbdR runs in major operating systems and is suitable for
+broad computing platforms from small to large scales
 including regular laptops, multicore computers, and multi-node clusters.
 In particular, the pbdR is aiming for bringing R and statistics
-to supercomputer architectures where by default
+to supercomputers which are designed by default
 using distributed processors and memory to deal with very large scale
 computation and data analysis for simulation or observational studies.
-A prototype of pbdR was started around late 2011 mainly developed under
-message passing interface (MPI) environment.
+To take advanges of different computation architectures,
+a prototype of pbdR was started around late 2011 and mainly developed under
+message passing interface (MPI) environment in a single program
+multiple data (SPMD) style.
 Later in 2012, the pbdR focused on distributed
 computation environment built upon scalable numerical libraries (ScaLAPACK)
 enlarging R's capability on high performance computing systems.
 Subsequently, several statistical applications had been implemented
-and performed on datasets of Tera bytes scale in distributed computing manner.
-Beside easy-to-use programming capability, we brought native R user
-interface into the pbdR started in late 2015.
-By utilizing a high-performance asynchronous messaging library (ZeroMQ),
-we continuously establish the pbdR's interaction feature and data
+in distributed computing manners and analyses had been performed on
+datasets of Tera bytes scale.
+Beside the easy-to-use programming capability, we recently brought the native R
+user interface into the pbdR by utilizing a high-performance asynchronous
+messaging library (ZeroMQ) in a client-server style.
+We continuously advance the pbdR's interaction feature and data
 visualization across different computation architectures.
 Future considerations will conclude this talk.
 
