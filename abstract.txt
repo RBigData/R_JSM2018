@@ -21,7 +21,7 @@ memory, and co-processor hardware is available on each node for very
 large scale computation on potentially very large data.
 
 A prototype of pbdR was started around late 2011, mainly developed for
-message passing interface (MPI) environment.  Later, in 2012, the
+the message passing interface (MPI) environment.  Later, in 2012, the
 project focused on using scalable numerical libraries (ScaLAPACK)
 enlarging R's capability on high performance computing systems.
 Subsequently, several statistical applications have been implemented
