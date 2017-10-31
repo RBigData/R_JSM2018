@@ -1,35 +1,40 @@
-Due Date: Monday, October 30 (11:59EDT), 2017
+- Due Date: Monday, October 30 (11:59EDT), 2017
 
-Chen, W.-C., Schmidt, D., and Ostrouchov, G. (2018)
-"The pbdR Project: Distributed Computing with R,"
-Section on Statistical Computing, JSM2018, Vancouver, BC, Canada. (Invited). 
+- Chen, W.-C., Schmidt, D., and Ostrouchov, G. (2018)
+  "The pbdR Project: Distributed Computing with R,"
+  Section on Statistical Computing, JSM2018, Vancouver, BC, Canada. (Invited). 
 
-Duration: 20 mins
+- Duration: 20 mins
 
-Abstract:
+- Abstract:
 
-In this talk, we introduce the Programming with Big Data in R (pbdR)
-project, which is composed of several packages available at
-http://pbdr.org/ and on CRAN.  Together, the packages provide a broad
+### No more than 1200 characters
+
+We introduce the Programming with Big Data in R (pbdR)
+project composed of several packages available at
+http://pbdr.org/ and on CRAN. The packages provide a broad
 parallel computing capability that spans multicore laptops through
-large multi-node clusters to supercomputers. Our philosophy is to
-learn from the high performance computing community, reinvent as
-little as possible, and provide native R interfaces.  In particular,
+multi-node clusters to supercomputers. Our philosophy is to
+learn from the high performance computing
+and provide native R interfaces. The
 pbdR aims to bring R and statistical computing to supercomputer
 architectures where a combination of shared memory, distributed
-memory, and co-processor hardware is available for very
-large scale computation on potentially very large data.
+memory, and co-processor hardware is available.
 
-A prototype of pbdR was started around late 2011, mainly developed for
-the message passing interface (MPI) environment.  Later, in 2012, the
-project focused on using scalable numerical libraries (ScaLAPACK)
+The pbdR was initially developed for
+the message passing interface (MPI) environment. Later,
+it focused on using scalable numerical libraries (ScaLAPACK)
 enlarging R's capability on high performance computing systems.
-Subsequently, several statistical applications have been implemented
-and applied to treascale datasets, providing interactive (sub minute)
-speeds on very large systems.  In addition to providing this
-supercomputer scale batch programming capability, we developed a
-client-server interface in late 2015 capable of interactive
-programming on very large distributed systems.  By utilizing a
-high-performance asynchronous messaging library (ZeroMQ), interactive
-control of a large distributed set of R sessions, cooperating in a
+Subsequently, several statistical applications had been implemented
+and applied to treascale datasets.
+In addition to batch programming, we recently
+developed a client-server interface capable of interactive
+programming on distributed systems. By utilizing a
+asynchronous messaging library (ZeroMQ), interactive
+control of a distributed set of R sessions, cooperating in a
 single program multiple data (SPMD) fashion is possible.
+
+- Key words:
+
+Big Data, High Performance Computing, Single Program Multiple Data,
+Message Passing Interface, Client-Server Interface
