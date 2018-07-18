@@ -1,0 +1,69 @@
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{times}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{contour}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+\definecolor{pbdgrn}{HTML}{005700}
+\definecolor{pbdrd}{HTML}{ab0000}
+\definecolor{pbdylw}{HTML}{ab7e00}
+\definecolor{pbdblu}{HTML}{2b74ec}
+
+\contourlength{0.5pt} %how thick each copy is
+\contournumber{5}  %number of copies
+\newcommand{\pbdR}{%
+%   \textbf{
+%     \color{pbdgrn}p\color{pbdrd}b\color{pbdylw}d\color{pbdblu}R}
+%   }
+\contour{black}{\protect\textcolor{pbdgrn}{p}}%
+\contour{black}{\protect\textcolor{pbdrd}{b}}%
+\contour{black}{\protect\textcolor{pbdylw}{d}}%
+\contour{black}{\protect\textcolor{pbdblu}{R}}\xspace
+}
+
+\newcommand{\R}{%
+  \textsf{R}
+}
+
+
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+\definecolor{mygreen3}{rgb}{0,0.69,0.09}
+\definecolor{myred}{rgb}{1,0,0}
+\definecolor{myblue3}{rgb}{0,0,0.8}
+\definecolor{mymagenta3}{rgb}{0.8,0,0.8}
+\definecolor{mydarkred}{rgb}{0.5,0,0}
+\definecolor{dgreen}{rgb}{0.0,0.52,0.27}
+
+\newcommand{\colorA}{\mbox{\color{mygreen3} A}}
+\newcommand{\colorC}{\mbox{\color{mymagenta3} C}}
+\newcommand{\colorG}{\mbox{\color{myblue3} G}}
+\newcommand{\colorT}{\mbox{\color{myred} T}}
+\newcommand{\colorcdots}{\color{myblack} $\cdots$}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\dmax}[1]{{\displaystyle \max_{#1}\;}}
+\newcommand{\dargmax}[1]{{\displaystyle \argmax_{#1}\;}}
+
+\newcommand{\A}{\mbox{A}}
+\newcommand{\C}{\mbox{C}}
+\newcommand{\G}{\mbox{G}}
+\newcommand{\T}{\mbox{T}}
+\newcommand{\piA}{\pi_{\mbox{\tiny \colorA}}}
+\newcommand{\piC}{\pi_{\mbox{\tiny \colorC}}}
+\newcommand{\piG}{\pi_{\mbox{\tiny \colorG}}}
+\newcommand{\piT}{\pi_{\mbox{\tiny \colorT}}}
+\newcommand{\deltaAG}{\delta_{\mbox{\tiny A}\mbox{\tiny G}}}
+\newcommand{\deltaCT}{\delta_{\mbox{\tiny C}\mbox{\tiny T}}}
+\newcommand{\DeltaAGCT}{\Delta^{\mbox{\tiny A}\mbox{\tiny G}}_{\mbox{\tiny C}\mbox{\tiny T}}}
+\newcommand{\DeltaCTAG}{\Delta^{\mbox{\tiny C}\mbox{\tiny T}}_{\mbox{\tiny A}\mbox{\tiny G}}}
+
+\newcommand{\E}{\mathbb{E}}
+

@@ -1,0 +1,469 @@
+\documentclass{beamer}
+
+\input{preamble.tex}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{default}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  \setbeamertemplate{footline}[frame number]
+  \setbeamerfont{caption}{size=\tiny}
+} 
+
+\usepackage[english]{babel}
+
+
+\title[pbdR]{The \pbdR Project: Distributed Computing with R\footnote{
+\tiny
+The pbdR project was supported in part by NSF and DOE grants}}
+\author{\normalsize Wei-Chen Chen$^{1,3}$, Drew Schmidt$^{2,3}$, and\\
+George Ostrouchov$^{2,3}$}
+\institute{\normalsize $^1$U.S. Food and Drug Administration\\
+$^2$Oak Ridge National Laboratory\\
+$^3$pbdR Core Team\\
+{\small \url{RBigData@gmail.com}}}
+\date{\small JSM2018, Vancouver, BC, Canada}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Disclaimer}
+Any opinions, findings, and conclusions or recommendations expressed in
+this presentation are those of the authors.
+
+\vspace{\baselineskip}
+
+Nothing in this content has been formally disseminated by the U.S. Department
+of Health \& Human Services or by U.S. Food and Drug Administration,
+and should not be construed to represent any determination
+or policy of University, Agency, Administration, or National Laboratory.
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+% Uncomment these lines for an automatically generated outline.
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\section{Introduction}
+
+\begin{frame}{What is pbdR}
+\begin{columns}
+  \begin{column}{0.7\textwidth}
+  \begin{itemize}
+  \item
+  Around 1998,
+  a book ``{\it Programming with Data -- A Guide to the S Language}'' by
+  John M. Chambers was published.
+  \\
+  \quad
+  \\
+  \item
+  Around 2012,
+  the ``{\bf P}rogramming with {\bf B}ig {\bf D}ata in {\bf R}'' project
+  was started with a set of
+  highly scalable \R packages for distributed computing and profiling
+  in data science.
+  \begin{figure}
+  \includegraphics[width=0.5\textwidth]{./graph/newpbdr}
+  \end{figure}
+  \end{itemize}
+  \end{column}
+  \begin{column}{0.4\textwidth}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{./graph/pds_1998}
+  \end{figure}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Where to learn pbdR}
+\begin{itemize}
+\item Main website: \\
+  \begin{itemize}
+  \item {\Large \color{myblue3} \url{http://pbdr.org/}} \\
+  \end{itemize}
+\item Main release: \\
+  \begin{itemize}
+  \item {\Large \color{myblue3} \url{http://pbdr.org/release/}} \\
+  \end{itemize}
+\item Main repository: \\
+  \begin{itemize}
+  \item {\Large \color{myblue3} \url{https://github.com/RBigData/}} \\
+  \end{itemize}
+\item Where to start: \\
+  \begin{itemize}
+  \item
+  pbdDEMO vignettes (about 150 pages) at \\
+  \url{https://cran.r-project.org/web/packages/pbdDEMO/vignettes/pbdDEMO-guide.pdf} \\
+  \item
+  pbdMPI vignettes (about 30 pages) at \\
+  \url{https://cran.r-project.org/web/packages/pbdMPI/vignettes/pbdMPI-guide.pdf}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{How can pbdR help?}
+\begin{itemize}
+\item Performance, performance, performance ...
+\end{itemize}
+\begin{figure}
+\includegraphics[width=1.05\textwidth]{./graph/randSVD}
+\caption{Parallelizing the function by one line.
+         Execute the function in any \# of cores.
+         Obtain the results faster.}
+\end{figure}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\section{Single Program Multiple Data (SPMD)}
+
+\begin{frame}{Illustration of Parallelism}
+\begin{itemize}
+  \item Popular for statistical simulations
+  \item Efficient for small size of data or dividable data/tasks
+\end{itemize}
+\begin{columns}
+  \begin{column}{0.6\textwidth}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{./graph/parallelism_task}
+  \caption{Task Parallelism}
+  \end{figure}
+  \end{column}
+  \begin{column}{0.6\textwidth}
+  \begin{figure}
+  \includegraphics[width=\textwidth]{./graph/parallelismdata}
+  \caption{Data Parallelism}
+  \end{figure}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{SPMD \& MPI}
+
+SPMD in Wikipedia: \\
+... In computing, SPMD (single program, multiple data) is a technique employed
+to achieve parallelism; ... {\bf\it\color{myblue3} Tasks are split up and
+run simultaneously on multiple processors with different input in order
+to obtain results faster.} SPMD is the most common style of parallel
+programming ...
+{\bf\it\color{myblue3} The current de facto standard is MPI} ...
+\quad
+\\
+\quad
+\\
+MPI in Wikipedia: \\
+Message Passing Interface (MPI) is a standardized and portable
+message-passing standard ... to function on a wide variety of
+parallel computing architectures...
+Language bindings\\
+\R bindings of MPI include Rmpi and pbdMPI where Rmpi focuses on
+manager-workers parallelism while
+{\bf\it\color{myblue3}pbdMPI focuses on SPMD parallelism}...
+\end{frame}
+
+\begin{frame}{An SPMD Example}
+\begin{figure}
+\includegraphics[width=\textwidth]{./graph/allreduce}
+\end{figure}
+\end{frame}
+
+\begin{frame}{The Power of MPI Reduction Operations}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+  \centering
+  {\scriptsize
+  $
+   X=
+   \begin{pmatrix}
+   X_0 \\
+   \vdots \\
+   X_7
+   \end{pmatrix}
+  $
+  then
+  $X^TX = \sum_{i = 0}^7X_i^TX_i$
+  }
+  \end{column}
+  \begin{column}{0.5\textwidth}
+  \centering
+  {\scriptsize
+  {\bf\it\color{myred} Recursive doubling with pairwise exchange} \\
+  allreduce(), reduce(), allgather(), gather()
+  }
+  \end{column}
+\end{columns}
+\vspace{-0.2cm}
+\begin{figure}
+\includegraphics[width=1.05\textwidth]{./graph/recursive_doubling}
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+
+\section{pbdR Project}
+
+\begin{frame}{pbdR Thinking}
+Strive for {\it Productivity, Portability, Performance}
+\begin{itemize}
+\item Bridge high-performance computing with high-productivity of \R language
+\item Keep syntax {\it identical} to native \R, when possible
+\item Software reuse philosophy:
+  \begin{itemize}
+  \item Don't reinvent the wheel when possible
+  \item Introduce HPC standards with \R flavor
+  \item Use scalable HPC libraries with \R convenience
+  \end{itemize}
+\item Simplify and use \R intelligence where possible
+\end{itemize}
+\end{frame}
+
+\begin{frame}{pbdR v1.0-1 (Apr 2018) at {\normalsize\bf\url{http://pbdr.org/releases/}}}
+\begin{itemize}
+\item MPI packages:
+      pbdMPI, pbdSLAP, pbdBASE, pbdDMAT, kazaam, tasktools
+\item Statistical Applications:
+      pbdML, pmclust, pbdDEMO
+\item Communication tools:
+      pbdZMQ, remoter, pbdCS, pbdRPC
+\item Profilers:
+      pbdPROF, pbdPAPI, hpcvis
+\item I/O packages:
+      pbdIO, pbdNCDF4, pbdADIOS, hdfio
+\end{itemize}
+\begin{figure}
+\includegraphics[width=0.9\textwidth]{./graph/hw}
+\end{figure}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\subsection{Dense Distributed Data in SPMD}
+
+\begin{frame}{Dense Distributed Linear Algebra and Statistics}
+\begin{columns}
+  \begin{column}{0.7\textwidth}
+  See vignettes of {\color{myblue3} pbdBASE}, {\color{myblue3} pbdDMAT},
+  and {\color{myblue3} kazaam}.
+  \\
+  \quad
+  \begin{itemize}
+  \item {\color{myblue3} pbdBASE} and {\color{myblue3} pbdDMAT} provides
+        block or block-cyclic distributed matrices, algebra, and
+        operations.
+        \\
+        \quad
+        \\
+        \quad
+        \\
+  \item {\color{myblue3} kazaam} is designed for ``tall but skinny'' matrices
+        where data are distributed in row blocks.
+        \\
+        \quad
+        \\
+        \quad
+        \\
+        \quad
+        \\
+  \end{itemize}
+  \end{column}
+  \begin{column}{0.4\textwidth}
+  \begin{figure}
+  \includegraphics[width=0.9\textwidth]{./graph/dmat_blockcyclic2d}
+  \caption{A 2D block cyclic matrix distributed in 4 cores (indicated by colors).}
+  \includegraphics[height=0.35\textheight,width=0.05\textwidth]{./graph/dmat_block}
+  \caption{A tall but skinny matrix distributed in 4 cores (indicated by colors).}
+  \end{figure}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\subsection{Client Server(s) Framework in SPMD}
+
+\begin{frame}{Client Server(s) in SPMD}
+See demos at \\
+{\large\color{myblue3} \url{https://github.com/snoweye/user2016.demo}}
+\begin{itemize}
+\item remoter + pbdZMQ: one client and one server
+\item pbdCS + remoter + pbdZMQ: one client and many MPI/SPMD servers,
+      clusters, or HPC computing nodes
+\item pbdRPC: remote procedure calls to start the server(s)
+\end{itemize}
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{./graph/remoter_relay}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Basic Interaction with SPMD}
+- Big data are obtained by and stays distributed on the servers \\
+- The client sends only code to the server executing in SPMD
+\begin{figure}
+\includegraphics[width=1.0\textwidth]{./graph/cs_comm_1slide}
+\end{figure}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\section{Applications}
+
+\begin{frame}{Diverse Statistical Applications of pbdR Analytics}
+\begin{figure}
+\includegraphics[width=1.05\textwidth]{./graph/diverse_applications}
+\end{figure}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\begin{frame}{Statistical Algorithms and Methods}
+
+All algorithms and methods are in SPMD (i.e. parallel and distributed).
+Again, see {\color{myblue3}pbdDEMO} vignettes for more.
+\begin{itemize}
+\item Implemented:
+  \begin{itemize}
+  \item matrix/vector operations, matrix decompositions, summary statistics,
+        random number generation
+  \item pbdDMAT: linear model, logistic regression, SVM
+  \item kazaam: k-means, linear model, glm fitters (Gaussian, Logistic, Poisson)
+  \item pmclust: k-means, model-based clustering, EM/APECM algorithms
+  \item pbdML: random SVD/PCA, robust PCA, Fisher's linear discriminant
+  \end{itemize}
+\item Future plan:
+  \begin{itemize}
+  \item pbdML: SVM, random forest, neural network, bagging, boosting, etc
+  \item {\bf\it\color{myblue3} How about yours?!}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\begin{frame}{Computational Statistics Utilities}
+
+The {\color{myblue3}tasktools} is designed for
+{\color{myred} task-based parallelism} which is
+especially useful for multiple but independent simulations, MCMC,
+long searching for optimal study design.
+\begin{itemize}
+\item Include an lapply()-like interface
+\item More convenient than pbdMPI::pbdLapply() or Rmpi
+\item Automatically handles input-checkpointing:
+  \begin{itemize}
+  \item Have thousands of "jobs"
+  \item Run as many as you can in 2 hour run window
+  \item Keep running job until all tasks eventually complete
+  \end{itemize}
+\item Can be used as a workflow tool for external programs
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\begin{frame}{Extensions to Data Science}
+
+User interfaces (\R packages) developed by external groups
+that rely on pbdR (mainly pbdZMQ):
+\\
+\quad
+\\
+\begin{itemize}
+  \item IRkernel: Native \R Kernel for the 'Jupyter Notebook' at\\
+        \url{https://github.com/IRkernel/IRkernel}
+        \\
+        \quad
+        \\
+  \item JuniperKernel: Kernel for 'Jupyter' at\\
+        \url{https://github.com/JuniperKernel/JuniperKernel}
+\end{itemize}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\section{Summary}
+
+\begin{frame}{Summary}
+
+\begin{itemize}
+\item Engage parallel math libraries at scale
+\item \R language unchanged
+\item New distributed concepts
+\item New interactive SPMD parallel
+\item Broad analysis and statistical applications
+%\item Supported software on ORNL’s HPC platforms
+%\item Installed at other HPC centers
+\end{itemize}
+
+Not included in this talk:
+\begin{itemize}
+\item New profiling capabilities
+\item Parallel and high performance I/O
+%\item In-situ distributed capabilities
+\item Comparisons with other frameworks:
+  \begin{itemize}
+  {\scriptsize
+  \item A review paper:
+        Thomas \& Kumar (2018) ``A Comparative Evaluation of Systems for
+        Scalable Linear Algebra-based Analytics.''
+  \item From HPC wire, July 6, 2016:
+        ``OLCF Researchers Scale R to Tackle Big Science Data Sets'' ...
+        ``{\bf\color{dgreen}for ... interactive near-real-time analysis,
+        the pbdR approach
+        is much better} [than Apache Spark–like frameworks].
+        PCA of a 134 GB matrix: ``hours on ... Apache Spark, ...
+        less than a minute using R.''
+  }
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------
+
+\begin{frame}{Acknowledgement}
+
+{\scriptsize
+This project, including software, documentation, talks, and tutorials, was
+supported in part by the following:
+\begin{itemize}
+\item Division of Mathematical Sciences, National Science Foundation, Award No. 1418195, 2014-2017.
+\item The National Institute for Mathematical and Biological Synthesis, under Award No. EF-0832858 and DBI-1300426, 2013-2014.
+\item The Division of Molecular and Cellular Biosciences, National Science Foundation Award MCB-1120370, 2013-2014.
+\item The Office of Cyberinfrastructure of the U.S. National Science Foundation under Award No. ARRA-NSF-OCI-0906324 for NICS-RDAV center, 2012-2013.
+\item U.S. Department of Energy Office of Science under Contract No. DE-AC05-00OR22725, 2011-2013.
+\end{itemize}
+We thank everyone who has submitted a bug report for the pbdR project. We
+also thank the members of the CRAN for their help and suggestions with
+pbdR packages, as well as their tireless efforts to develop and support \R and
+its extensions.
+}
+
+%\vspace{2.5cm}
+\Huge
+\centering
+\color{dgreen}
+{\it Thank you!}
+
+\end{frame}
+
+
+\end{document}
+
